@@ -1,6 +1,6 @@
 ---
 description: Conventions for markdown documents in docs/ (figures, layout, config).
-globs: ["docs/**/*.md", "docs/_config.yml", "docs/_layouts/*.html"]
+globs: ["docs/**/*.md", "docs/**/*.html", "docs/_config.yml", "docs/_layouts/*.html"]
 alwaysApply: false
 ---
 
@@ -89,6 +89,19 @@ Do **not** copy the equivalent inline styles into markdown; use the class so fut
 ## Layout and config (Jekyll / GitHub Pages)
 
 The `docs/` site is built with Jekyll. Respect the following when creating or editing docs.
+
+### Ensuring the Jekyll setup exists
+
+**When creating or adding new doc output** (e.g. a new `docs/results/` index, a new `docs/` section, or any page under `docs/` that will be served by GitHub Pages):
+
+1. **Ensure these files exist** before or as part of the work. If any is missing, create it:
+   - **`docs/_config.yml`** — contents as in the "Exact current content" block below.
+   - **`docs/_layouts/default.html`** — contents as in the "Exact current content" block below.
+   - **`docs/css/site.css`** — must define the shared classes `ai-written-box`, `ai-written-label`, `callout-addressed` (and any extra classes used by new pages, e.g. `description` for results index).
+2. **Do not** remove or relocate `_layouts/` or `_config.yml`; Jekyll expects them at the root of the source directory (`docs/`).
+3. **New HTML index or landing pages** under `docs/` (e.g. `docs/results/index.html`) should use the default layout: add YAML front matter `layout: default` and `title: ...`, and put only the body content below the front matter (no full HTML document wrapper).
+
+This keeps the site buildable by GitHub Pages and styles consistent.
 
 ### `_config.yml`
 
