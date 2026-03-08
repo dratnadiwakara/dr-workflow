@@ -72,6 +72,16 @@ This project defines several custom Cursor agents under `.cursor/agents` to supp
     - `literature-review.md` – thematic literature review.
     - `literature-review-critique.md` – structured critique with overall assessment, major/minor comments, and suggested revisions.
 
+### LaTeX Compiler (`latex-compile`)
+
+- **Purpose**: Compile a .tex file with pdflatex and bibtex (full sequence) with 15-second pauses between steps.
+- **Trigger scope**: `*.tex`.
+- **Invocation pattern**:
+  - Call the agent with the target .tex file provided via @ (e.g. `@other-context/bricks_in_the_age_of_clicks_v2_20260307.tex`), or pass the path in arguments.
+- **Main behavior**:
+  - Runs from the .tex file’s directory: `pdflatex` → sleep 15s → `bibtex` → sleep 15s → `pdflatex` → sleep 15s → `pdflatex`.
+- **Outputs**: PDF and auxiliary files in the same directory as the .tex file.
+
 ## Usage notes
 
 - **Agent discovery**: All agent definitions live under `.cursor/agents/`. Update this `AGENTS.md` whenever you add, rename, or significantly change an agent.

@@ -1,0 +1,39 @@
+---
+description: Sync .cursor/ and AGENTS.md changes to the dr-workflow template project
+globs: ".cursor/**/*,AGENTS.md"
+alwaysApply: false
+---
+
+# Sync to Template Project (dr-workflow)
+
+This project uses **C:\OneDrive\github\dr-workflow** as the template from which new projects are created. Whenever you add, edit, or delete files under `.cursor/` or change `AGENTS.md` in **this** project, apply the **same changes** to the corresponding paths in the template project.
+
+## Scope
+
+- **Source (this project):** Anything under `.cursor/` (agents, rules, skills, etc.) and the root file `AGENTS.md`.
+- **Target (template):** `C:\OneDrive\github\dr-workflow` — same relative paths (e.g. `.cursor/agents/foo.md` → `C:\OneDrive\github\dr-workflow\.cursor\agents\foo.md`, `AGENTS.md` → `C:\OneDrive\github\dr-workflow\AGENTS.md`).
+
+## What to do
+
+1. **After editing any file in `.cursor/` or `AGENTS.md`:**  
+   Update the corresponding file in `C:\OneDrive\github\dr-workflow` with the same content (or create it if it does not exist).
+
+2. **After adding a new file** under `.cursor/` or creating/updating `AGENTS.md`:  
+   Create or update the same file at the matching path under `C:\OneDrive\github\dr-workflow`.
+
+3. **After deleting a file** under `.cursor/` or removing content that implies a file no longer exists:  
+   Delete the corresponding file in `C:\OneDrive\github\dr-workflow` if it exists.
+
+## Path mapping
+
+| In this project              | In dr-workflow                                      |
+|-----------------------------|-----------------------------------------------------|
+| `.cursor/agents/*.md`       | `C:\OneDrive\github\dr-workflow\.cursor\agents\`     |
+| `.cursor/rules/*.mdc`       | `C:\OneDrive\github\dr-workflow\.cursor\rules\`     |
+| `.cursor/skills/**/*`       | `C:\OneDrive\github\dr-workflow\.cursor\skills\`     |
+| `AGENTS.md`                 | `C:\OneDrive\github\dr-workflow\AGENTS.md`          |
+
+## When to sync
+
+- Trigger this sync **whenever you finish making changes** to `.cursor/` or `AGENTS.md` in this repo.
+- Do not change dr-workflow for edits that only touch other project files (e.g. `code/`, `docs/`, `latex/`).
