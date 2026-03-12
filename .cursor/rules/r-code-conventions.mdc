@@ -130,6 +130,13 @@ setFixest_etable(
 )
 ```
 
+### 6.1 Table labeling and row ordering (`etable`)
+
+- **Human-readable labels:** Always pass a `dict =` argument to `fixest::etable()` so that row labels are human-readable (e.g., `"log(family_income)"` → `"log(Family Income)"`).
+- **Ordering by labels, not variable names:** When using the `order =` argument in `etable()`, specify the desired row order using the **printed labels**, not the underlying variable names. For example, if the label is `"log(Family Income)"`, the `order` vector should contain `"Family Income"` (the underlying economic quantity) rather than `"log(family_income)"`.
+- **Intercept placement:** Ensure the intercept row is labeled `"Constant"` (via `dict = c(covariate_labels, "(Intercept)" = "Constant")`) and appears **last** in the table by including `"Constant"` as the final entry in the `order` vector.
+- **Consistency across outputs:** Use the **same label-based `order` vector** for both on-screen (`html`) and LaTeX (`tex = TRUE`) versions of the table so row ordering is identical in all exported outputs.
+
 ## 7. Script Organization & Quarto Analysis
 
 ### 7.1 Script locations
