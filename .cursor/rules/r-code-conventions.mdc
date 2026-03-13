@@ -7,6 +7,7 @@ alwaysApply: true
 # R Coding & Visualization Standards
 
 ## 1. General Principles
+- **Never render `.qmd` or `.Rmd` files.** Do not run `quarto render`, `rmarkdown::render()`, or equivalent rendering commands on Quarto or R Markdown documents.
 - **Library Management:** Always place `library()` calls at the very top of the script.
 - **Reproducibility:** Include `set.seed()` exactly once at the top of the file if any randomness is involved.
 - **Environment Reset:** For `.R` scripts, the very first line of code must be `rm(list = ls())`. For `.qmd` and `.Rmd` documents, the first statement in the first code chunk must be `rm(list = ls())`.

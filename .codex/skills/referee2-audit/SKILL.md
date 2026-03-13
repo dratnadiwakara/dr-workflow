@@ -1,6 +1,6 @@
 ---
 name: referee2-audit
-description: Systematic audit and replication of empirical research. Performs five audits (code, cross-language replication, directory/replication package, output automation, econometrics), creates replication scripts in R and Python, and produces a formal referee report plus markdown summaries. Use when auditing empirical code for correctness, reproducibility, or pre-publication review; when asked to replicate results across languages; or when performing referee-style review of research code.
+description: Systematic audit and replication of empirical research. Performs five audits (code, replication in a specified language, directory/replication package, output automation, econometrics), creates replication scripts in R or Python (as requested), and produces a formal referee report plus markdown summaries. Use when auditing empirical code for correctness, reproducibility, or pre-publication review; or when performing referee-style review of research code.
 ---
 
 # Referee 2: Systematic Audit & Replication Protocol
@@ -17,6 +17,14 @@ Before beginning, create required folders if they do not exist:
 Example (PowerShell): `New-Item -ItemType Directory -Force -Path "code/replication", "correspondence/referee2"`
 
 Example (Unix): `mkdir -p code/replication correspondence/referee2`
+
+## Data and Replication Environment
+
+- The **user will always specify the main script to audit/replicate** (e.g. `code/result-generation/main_table_20260312.qmd` or `code/sample-construction/01_branch_closure_panel.R`). Treat this as the authoritative entry point for identifying code and expected outputs.
+- You may freely **read and inspect scripts in** `code/sample-construction/` to understand how raw data in `data/raw/` is transformed into analytical samples, but you must still not run or modify these scripts.
+- When constructing and running replication scripts, you may **only read input data from** `data/raw/`. Do **not** read data from any other folder (e.g. `data/processed/`, `docs/`, `temp/`, or external absolute paths).
+- Your replication scripts may **temporarily write intermediate or transformed data files only to** `code/replication/`. Do not write data files anywhere else.
+- At the end of each replication run, **delete any temporary data files you created in** `code/replication/` so that directory contains only your replication scripts and non-data artifacts (e.g. logs, markdown notes). Do not delete or modify any user-authored files.
 
 ## Scope and Audit Entry Point
 
@@ -44,7 +52,7 @@ Your replication scripts are independent verification. This separation makes the
 Perform five distinct audits. See [references/audits.md](references/audits.md) for detailed checklists.
 
 1. **Code Audit** — Coding errors, logic gaps, implementation problems. Document each issue with file path, line number, and why it matters.
-2. **Cross-Language Replication** — Identify primary language (R or Python). Create replication script in the other: if primary is R → Python; if primary is Python → R. Run both and compare point estimates (6+ decimals), SEs, N. Discrepancies reveal bugs.
+2. **Replication (User-Specified Language)** — The user must specify **one** language for replication: R *or* Python. Implement your independent replication scripts only in that language and compare resulting point estimates (6+ decimals), SEs, and N to the published results. Do not build or run a second-language replication unless the user explicitly requests it.
 3. **Directory & Replication Package** — Folder structure, relative paths, naming conventions, master script, README, dependencies, seeds. Assign replication readiness score (1–10).
 4. **Output Automation** — Tables/figures programmatically generated? In-text numbers pulled from code? Reproducibility test?
 5. **Econometrics** — Identification, specification, standard errors, fixed effects, controls, sample definition, parallel trends/IV/balance as applicable.
@@ -69,7 +77,17 @@ See [references/report-format.md](references/report-format.md) for the report st
 3. Propose solutions when obvious
 4. Acknowledge uncertainty when appropriate
 5. Do not invent problems
-6. **Create and run your replication scripts** — do not run the author's code; run only your own scripts in `code/replication/` to compare R and Python implementations
+6. **Create and run your replication scripts** — do not run the author's code; run only your own scripts in `code/replication/` in the single language (R or Python) specified by the user for replication
+
+### Running R Replication Scripts
+
+- When you need to **run an R-based replication script** that you created under `code/replication/`, assume you are on Windows and use the following `Rscript` command pattern:
+
+```bash
+'C:\Program Files\R\R-4.4.1\bin\Rscript.exe' 'code/replication/your_script_name.R'
+```
+
+- The script path must point to a file under `code/replication/`, and you must still respect all other constraints above (no running or modifying the author's original scripts).
 
 ## Revise & Resubmit
 
