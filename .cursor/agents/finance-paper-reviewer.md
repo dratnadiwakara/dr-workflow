@@ -418,7 +418,7 @@ The .tex files to review are: [LIST ALL TEX FILE PATHS HERE]
 
 After all 6 agents return their results, consolidate them into a single structured report. Save the report to:
 
-`PRE_SUBMISSION_REVIEW_[YYYY-MM-DD].md`
+`correspondence/finance-paper-reviewer/PRE_SUBMISSION_REVIEW_[YYYY-MM-DD].md`
 
 where `[YYYY-MM-DD]` is today's date.
 
@@ -501,7 +501,7 @@ The following issues require attention before submission, ordered by priority. W
 10. ...
 ```
 
-After saving, report to the user:
+If the `correspondence/finance-paper-reviewer/` directory does not exist, create it before writing the file. After saving, report to the user:
 1. The path to the saved report
 2. The preliminary recommendation from Agent 6
 3. The top 5 priority action items

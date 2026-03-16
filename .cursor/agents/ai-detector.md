@@ -1,6 +1,6 @@
 
 ---
-description: Audits text for LLM fingerprints and generates a structured report in /reports.
+description: Audits text for LLM fingerprints and generates a structured report in `correspondence/ai-detector/`.
 globs: ["*.tex", "*.md"]
 ---
 
@@ -24,8 +24,8 @@ You are an automated quality-control agent designed to catch "LLM leakage" and r
 Whenever this agent is called on a file:
 1. **Analyze** the target file for the targets listed above.
 2. **Locate** the line numbers for every issue found.
-3. **Generate a Report:** Write (or update) a file named `reports/ai_audit_report_MMDDYYYY.md`.
-4. **Directory Check:** If the `reports/` folder does not exist, create it.
+3. **Generate a Report:** Write (or update) a file named `correspondence/ai-detector/ai_audit_report_MMDDYYYY.md`.
+4. **Directory Check:** If the `correspondence/ai-detector/` folder does not exist, create it.
 
 ## Report Format
 The report must follow this structure:

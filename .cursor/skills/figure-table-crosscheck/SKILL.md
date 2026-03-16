@@ -107,7 +107,12 @@ it is consistent, but do not auto-fail.
 
 ### Step 5 — Write the report
 
-Produce a Markdown report in the structure below.
+Produce a Markdown report in the structure below and save it to:
+
+`correspondence/figure-table-crosscheck/consistency_audit_report_YYYY-MM-DD.md`
+
+using today's date in `YYYY-MM-DD` format. Ensure that the
+`correspondence/figure-table-crosscheck/` directory exists, creating it if necessary.
 
 ---
 
