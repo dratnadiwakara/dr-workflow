@@ -52,6 +52,8 @@ theme_custom <- function(base_size = 14) {
 }
 ```
 
+- For `fixest` event-study plots, prefer `ggiplot()` over base `iplot()` so that the same `theme_custom()` and color palette can be applied consistently (e.g., `ggiplot(model) + theme_custom()`). This requires the `ggfixest` package to be loaded (`library(ggfixest)`).
+
 ## 5. Export Standards (figures & tables)
 - All rendered outputs (figures and tables) must be written to the `docs/` subfolders of the project so they can be tracked and versioned.
 
@@ -95,7 +97,6 @@ if (isTRUE(save_figures)) {
 - Execution pattern: Wrap each table export call in a combined check on the global and local flags, for example:
 
 ```r
-save_tables <- TRUE      # Global toggle
 export_this_table <- TRUE # Local toggle for this table
 
 dat_suffix <- format(Sys.time(), "%Y%m%d_%H%M%S")
@@ -108,8 +109,13 @@ if (isTRUE(save_tables) && isTRUE(export_this_table)) {
 }
 ```
 
+- Whether tables or figures are printed/drawn in a `.qmd` before export is a global presentational choice and is **not** enforced by this rule.
+- The global toggles `save_figures` and `save_tables` should be defined once in `code/_common.R` and used via sourcing; they should not be redefined inside individual `.qmd` or `.R` analysis files.
+
 ## 6. Econometric Modeling (fixest)
 Always use the `fixest` package for regressions. Use global macros (`setFixest_fml` and `setFixest_etable`) to maintain a clean and consistent model structure across scripts.
+
+- Define shared `covariate_labels_dict`, `setFixest_fml`, and `setFixest_etable` once in a common helper file (e.g., `code/_common.R`) and reuse them across `.R` and `.qmd` analysis files instead of redefining them in each document.
 
 ### Macro Structure Template
 Initialize scripts using this order (adjusting the specific variables based on the unit of analysis, this is only an example.):

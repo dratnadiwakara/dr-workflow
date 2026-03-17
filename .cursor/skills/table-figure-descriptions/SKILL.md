@@ -25,8 +25,8 @@ what a table or figure shows — sample, variables, specification, estimation me
 
 For **tables**:
 1. **What the table shows** — the dependent variable, the unit of observation, the regression/test being run.
-2. **Sample** — the data source, time period, and any sample restrictions (e.g., "main sample of listings", "IV sample restricted to observations where the initial purchase is observed").
-3. **Controls and fixed effects** — enumerate them. State which columns include which sets of controls so the reader doesn't need to hunt through the text.
+2. **Sample** — the time period and any key sample restrictions (e.g., "main sample of listings", "IV sample restricted to observations where the initial purchase is observed"). Data sources and CPI-adjustment or construction details generally **do not** belong in the note unless they are essential to understanding the exhibit.
+3. **Specification context** — briefly describe the estimation setup when it is not obvious from the column headings (e.g., “baseline linear probability model from Equation (5a)”). Do **not** enumerate the full list of controls and fixed effects in the note unless a particular control or fixed effect is itself the focus of the table; it is sufficient to refer to the “baseline specification” or a numbered equation in the text.
 4. **Estimation method** — OLS, IV, probit, etc. If IV, state what the instrument is and where IV details are discussed (e.g., "Details of the IV estimation are discussed in Section 4").
 5. **Standard errors** — how they are clustered or computed.
 6. **Significance stars** — always include the standard line: `*, **, and *** denote statistical significance at the 10%, 5%, and 1% level, respectively.`
@@ -44,7 +44,7 @@ For **figures**:
 - **Do not interpret results** — do not say "consistent with", "we find", "the results show", or draw any conclusions.
 - **Do not be redundant with the title** — the title (e.g., "Table 3: Effect of Agent Experience on Foreclosure") states what the table is; the note provides operational detail.
 - **Do not omit variable definitions** — any transformed variable (logs, indicators, interactions) must be defined.
-- **Do not use vague language** — "appropriate controls" or "standard fixed effects" are not acceptable; enumerate them.
+- **Do not use vague language** — "appropriate controls" or "standard fixed effects" are not acceptable when the specification itself is the focus; in such cases, clearly describe how the specification differs from the baseline rather than listing every control.
 
 ### Tone and length
 - Write in third-person, present tense, declarative sentences.
@@ -122,6 +122,8 @@ Produce a single Markdown file under the `correspondence/` folder at the project
 
 **Assessment**: [One sentence: "Existing note is complete and accurate." OR "Existing note is missing X, Y, Z."]
 
+**Rating**: [Star rating from 1 to 5 stars using Unicode stars, e.g., "★★★★★" for an excellent note that needs no changes, "★★★☆☆" for a note that is serviceable but has clear gaps, and "★☆☆☆☆" for a poor note that requires substantial revision.]
+
 **Suggested note** (only if improvements are warranted):
 ```latex
 [Full revised descriptive text, formatted as LaTeX and without a leading "Note:" prefix]
@@ -146,9 +148,7 @@ If there is no existing caption, omit the "Existing caption" block and provide o
 - [ ] All panels described if multi-panel
 - [ ] Column differences explained (e.g., "Columns 3–5 add controls for house characteristics")
 - [ ] Key variables defined (especially transformations like logs, indicators, interactions)
-- [ ] Fixed effects enumerated
-- [ ] Controls enumerated or described precisely
-- [ ] Estimation method stated
+- [ ] Estimation method or specification context stated (e.g., “baseline linear probability model from Equation (5a)”)
 - [ ] If IV: instrument described, and section reference given
 - [ ] Standard error clustering stated
 - [ ] Significance stars line present (tables only)
